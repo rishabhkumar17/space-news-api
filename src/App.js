@@ -9,7 +9,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setNewsList(data))
       .catch((error) => console.log(error));
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -19,7 +19,13 @@ function App() {
       <div className="newsContainer">
         {newsList.map((value, key) => {
           return (
-            <div key={key}>
+            <div
+              key={key}
+              className="article"
+              onClick={() => {
+                window.location.href = value.url;
+              }}
+            >
               <h3>{value.title}</h3>
               <img src={value.imageUrl} alt={value.id} />
               <p>{value.summary}</p>
